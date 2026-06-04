@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Todo App</title>
+
+    <style>
+
+        /* Full page center */
+        body{
+            height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            font-family:Arial;
+            background:#c2c4bc;
+        }
+
+        /* Box */
+        .container{
+            background:rgb(117, 49, 177);
+
+            padding:30px;
+
+            border-radius:10px;
+
+            box-shadow:0 0 10px gray;
+
+            text-align:center;
+        }
+
+        /* Heading */
+        h1{
+            margin-bottom:30px;
+        }
+
+        /* Input box */
+        input{
+            padding:10px;
+            width:220px;
+        }
+
+        /* Button */
+        button{
+            padding:10px;
+            cursor:pointer;
+        }
+
+        /* Task style */
+        li{
+            margin-top:10px;
+            list-style:none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Heading -->
+        <h1>Todo App</h1>
+
+        <!-- Input -->
+        <input type="text" id="task">
+
+        <!-- Add button -->
+        <button id="addBtn">
+            Add
+        </button>
+
+        <!-- Tasks -->
+        <ul id="list"></ul>
+
+    </div>
+
+
+
+    <script>
+
+        // Get input
+        const task =
+            document.getElementById("task");
+
+        // Get button
+        const addBtn =
+            document.getElementById("addBtn");
+
+        // Get list
+        const list =
+            document.getElementById("list");
+
+
+        // When button clicked
+        addBtn.addEventListener("click", function(){
+
+            // If empty
+            if(task.value === ""){
+
+                alert("Enter task");
+
+                return;
+            }
+
+            // Create li
+            const li =
+                document.createElement("li");
+
+
+            // Add task + delete button
+            li.innerHTML = `
+
+                ${task.value}
+
+                <button onclick="this.parentElement.remove()">
+                    Delete
+                </button>
+
+            `;
+
+            // Add li into ul
+            list.appendChild(li);
+
+            // Clear input
+            task.value = "";
+
+        });
+
+    </script>
+
+</body>
+</html>
