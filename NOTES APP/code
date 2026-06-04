@@ -1,1 +1,207 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+
+    <title>Notes App</title>
+
+    <style>
+
+        /* Full page center */
+        body{
+
+            height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            background:#06244a;
+
+            font-family:Arial;
+        }
+
+        /* Main box */
+        .container{
+
+            background:white;
+
+            padding:30px;
+
+            border-radius:15px;
+
+            width:350px;
+
+            text-align:center;
+
+            box-shadow:0 0 10px gray;
+        }
+
+        /* Textarea */
+        textarea{
+
+            width:300px;
+
+            height:100px;
+
+            padding:10px;
+
+            border-radius:10px;
+        }
+
+        /* Save button */
+        .saveBtn{
+
+            margin-top:10px;
+
+            padding:10px;
+
+            background:rgb(42, 44, 5);
+
+            color:white;
+
+            border:none;
+
+            border-radius:5px;
+
+            cursor:pointer;
+        }
+
+        /* Note box */
+        .note{
+
+            background:#eff6ff;
+
+            margin-top:10px;
+
+            padding:10px;
+
+            border-radius:10px;
+        }
+
+        /* Delete button */
+        .delete{
+
+            background:rgb(236, 39, 8);
+
+            color:white;
+
+            border:none;
+
+            padding:5px 10px;
+
+            border-radius:5px;
+
+            cursor:pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Notes App 📝</h1>
+
+        <!-- Textarea -->
+        <textarea id="note"></textarea>
+
+        <br>
+
+        <!-- Save button -->
+        <button class="saveBtn" id="saveBtn">
+            Save Note
+        </button>
+
+        <!-- Notes appear here -->
+        <div id="notes"></div>
+
+    </div>
+
+
+
+    <script>
+
+        // Get textarea
+        const note =
+            document.getElementById("note");
+
+        // Get save button
+        const saveBtn =
+            document.getElementById("saveBtn");
+
+        // Get notes container
+        const notes =
+            document.getElementById("notes");
+
+
+
+        // When button clicked
+        saveBtn.addEventListener("click", function(){
+
+
+            // Empty check
+            if(note.value === ""){
+
+                alert("Write something");
+
+                return;
+            }
+
+
+            // Create div
+            const div =
+                document.createElement("div");
+
+
+            // Add note text + delete button
+            div.innerHTML = `
+
+                <p>${note.value}</p>
+
+                <button class="delete">
+                    Delete
+                </button>
+
+            `;
+
+
+            // Add note class
+            div.classList.add("note");
+
+
+            // Add note to page
+            notes.appendChild(div);
+
+
+            // Delete button
+            const deleteBtn =
+                div.querySelector(".delete");
+
+
+            // Delete note
+            deleteBtn.addEventListener("click", function(){
+
+                div.remove();
+
+            });
+
+
+            // Save in local storage
+            localStorage.setItem("note", note.value);
+
+
+            // Clear textarea
+            note.value = "";
+
+        });
+
+    </script>
+
+</body>
+
+</html>
