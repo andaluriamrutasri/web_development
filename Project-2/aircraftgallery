@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aviation Gallery</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #cad0cb;
+      color: rgb(28, 25, 46);
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+      filter: brightness(50%);
+    }
+
+    .info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      background: rgba(209, 203, 203, 0.6);
+      opacity: 0;
+      transition: 0.4s;
+    }
+
+    .card:hover .info {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Aircraft Gallery ✈️</h1>
+
+<div class="grid">
+
+  <div class="card">
+    <img src="https://c02.purpledshub.com/uploads/sites/41/2023/12/F-22_Raptor.jpg?webp=1&w=1200">
+    <div class="info">
+      <p>Jet Fighter</p>
+      <p>Max Speed: 1500 km/h</p>
+      <p>Wingspan: 10m</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://i.abcnewsfe.com/a/29ad17e0-4dec-488a-9c27-bdc2424ba5a5/electric-plane-ht-ml-240110_1704902584341_hpMain_16x9.jpg?w=992">
+    <div class="info">
+      <p>Passenger Plane</p>
+      <p>Max Speed: 900 km/h</p>
+      <p>Wingspan: 60m</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/LAPD_Bell_206_Jetranger.jpg/1280px-LAPD_Bell_206_Jetranger.jpg?utm_source=www.wikidata.org&utm_campaign=index&utm_content=thumbnail">
+    <div class="info">
+      <p>Helicopter</p>
+      <p>Max Speed: 300 km/h</p>
+      <p>Rotor Span: 15m</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://www.dunesair.in/wp-content/uploads/2025/05/5fb32fa5bdc52345ff2a97b1_givsp-ext1.webp">
+    <div class="info">
+      <p>Private Jet</p>
+      <p>Luxury Travel Aircraft</p>
+      <p>Max Speed: 950 km/h</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8cY-GFisXWg2TmkkuGzBhgH6QlIekPyAPmw&s">
+    <div class="info">
+      <p>Space Shuttle</p>
+      <p>Used for Space Missions</p>
+      <p>Launch Speed: 28000 km/h</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2049EujtjRqApa-fBIODHnms_-LadX4fVPw&s">
+    <div class="info">
+      <p>Hot Air Balloon</p>
+      <p>Air Tourism Vehicle</p>
+      <p>Height: 20m</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
