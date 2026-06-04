@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guess The Number</title>
+
+  <style>
+    body{
+      margin:0;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:rgb(21, 19, 16);
+      color:white;
+      font-family:Tahoma;
+      overflow:hidden;
+    }
+
+    .game{
+      text-align:center;
+      background:rgba(255,255,255,0.08);
+      padding:35px;
+      border-radius:20px;
+      backdrop-filter:blur(8px);
+      box-shadow:0 0 20px #a5bf4e;
+      width:350px;
+    }
+
+    h1{
+      color:#b4a9e1;
+      margin-bottom:15px;
+    }
+
+    input{
+      width:80%;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      margin-top:15px;
+      font-size:18px;
+      text-align:center;
+    }
+
+    button{
+      margin-top:15px;
+      padding:12px 25px;
+      border:none;
+      border-radius:10px;
+      background:#0ebacd;
+      font-size:18px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      transform:translateY(-3px);
+    }
+
+    #result{
+      margin-top:18px;
+      font-size:20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="game">
+  <h1></h1>***Guess The Number***</h1>
+  <p>Choose a number between 1 and 100</p>
+
+  <input type="number" id="guess">
+  <br>
+  <button onclick="checkGuess()">Check</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  let secret = Math.floor(Math.random()*100)+1;
+  let attempts = 0;
+
+  function checkGuess(){
+    let user = Number(document.getElementById('guess').value);
+    attempts++;
+
+    if(user === secret){
+      document.getElementById('result').innerHTML =
+      `🎉 Correct! You guessed in ${attempts} attempts`;
+    }
+    else if(user > secret){
+      document.getElementById('result').innerHTML = "📈 Too High";
+    }
+    else{
+      document.getElementById('result').innerHTML = "📉 Too Low";
+    }
+  }
+</script>
+
+</body>
+</html>
