@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input,button{
+            padding:10px;
+            margin:5px;
+        }
+
+        #result{
+            margin-top:20px;
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Weather App</h1>
+
+    <!-- City name input -->
+    <input
+        type="text"
+        id="city"
+        placeholder="Enter City Name"
+    >
+
+    <button onclick="getWeather()">
+        Get Weather
+    </button>
+
+    <div id="result"></div>
+
+<script>
+
+async function getWeather(){
+
+    try{
+
+        // Get city name
+        const city =
+        document.getElementById("city").value;
+
+        // Convert city name to coordinates
+        const geoResponse =
+        await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`
+        );
+
+        if(!geoResponse.ok){
+            throw new Error("City not found");
+        }
+
+        const geoData =
+        await geoResponse.json();
+
+        if(!geoData.results){
+            throw new Error("City not found");
+        }
+
+        // Destructuring
+        const {
+            latitude,
+            longitude,
+            name
+        } = geoData.results[0];
+
+        // Weather API call
+        const weatherResponse =
+        await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`
+        );
+
+        if(!weatherResponse.ok){
+            throw new Error("Weather data unavailable");
+        }
+
+        // JSON conversion
+        const weatherData =
+        await weatherResponse.json();
+
+        // Destructuring
+        const { current_weather } =
+        weatherData;
+
+        const {
+            temperature,
+            windspeed
+        } = current_weather;
+
+        // Spread Operator
+        const copyWeather = {
+            ...current_weather
+        };
+
+        document.getElementById("result").innerHTML =
+        `
+        <h2>${name}</h2>
+        <p>Temperature: ${temperature} °C</p>
+        <p>Wind Speed: ${windspeed} km/h</p>
+        `;
+
+    }
+    catch(error){
+
+        document.getElementById("result").innerHTML =
+        error.message;
+    }
+}
+
+</script>
+
+</body>
+</html>
